@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // 初始背景
-  addMessage("公司聚餐，你刚坐下。领导就头都不带回的，用戏谑的语气说：", true);
+  addMessage("公司聚餐，你刚坐下，领导头都没抬", true);
   addMessage("小王，你还没有资格坐在我的旁边！！", false);
 
 
