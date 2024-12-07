@@ -17,6 +17,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const userId = generateUserId();
   console.log('userId', userId);
 
+  avatar = 'img/boss_0.png'
+  saldAvatar = 'img/boss_1.png'
+
+  function switchThenBackAvatar(newAvatar) {
+    const avatarElement = document.getElementById('avatar');
+    originalAvatar = avatarElement.src;
+    avatarElement.src = newAvatar;
+    setTimeout(function () {
+      avatarElement.src = originalAvatar;
+    }, 2000);
+  }
+
   function addMessage(messageText, isInnerThought = false) {
     const messageDiv = document.createElement('div');
     if (isInnerThought) {
@@ -104,6 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
     return word;
   }
 
+  // 初始背景
+  addMessage("公司聚餐，你刚坐下。领导就头都不带回的，用戏谑的语气说：", true);
+  addMessage("小王，你还没有资格坐在我的旁边！！", false);
+
+
   function request(userInput) {
     const data = {
       "user_id": userId,
@@ -122,11 +139,24 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(response => response.json())
       .then(result => {
         console.log('请求成功，返回结果：', result);
-        // 模拟添加别人回复的消息（两种情况，普通回复和内心活动回复）
+        if (result.score <= 0) {
+          // 游戏结束
+          if (confirm("算你狠！！！")) {
+            // 刷新页面
+            location.reload();
+          }
+        }
         let currentMood = parseInt(moodValueSpan.textContent);
         score = result.score - currentMood
+        // 添加内心独白
         addMessage(getWordByScore(score), true);
+        if (score < 0) {
+          // 切换头像
+          switchThenBackAvatar(saldAvatar);
+        }
+        // 更新分数
         updateMoodValue(result.score);
+        // 添加回复
         addMessage(result.bot_return, false);
       })
       .catch(error => {
@@ -147,6 +177,12 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, 50);
   }
+
+  messageInput.addEventListener('keydown', function (e) {
+    if (e.key === "Enter") {
+      sendButton.click();
+    }
+  });
 
   sendButton.addEventListener('click', function () {
     const messageText = messageInput.value.trim();
