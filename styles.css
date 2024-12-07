@@ -1,0 +1,90 @@
+/* 整体聊天框容器 */
+.chat-container {
+    width: 95vw;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 98vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .character-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    height: 100px;
+  }
+  
+  .character-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .character-score {
+    font-size: 16px;
+    transition: all 0.5s ease;
+  }
+  
+  /* 消息展示区域，设置为可自动拉伸占满剩余空间 */
+  .chat-messages {
+    flex: 1;
+    overflow-y: scroll;
+    padding: 10px;
+  }
+  
+  .message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .message.other {
+    background-color: #e0e0e0;
+    float: left;
+    clear: both;
+    max-width: 70%;
+  }
+  
+  .message.self {
+    background-color: #0084ff;
+    color: white;
+    float: right;
+    clear: both;
+    max-width: 70%;
+  }
+  
+  /* 新增内心活动消息的样式 */
+  .message.inner-thought {
+    color: gray;
+    /* font-style: italic; */
+    float: left;
+    clear: both;
+    max-width: 70%;
+  }
+  .chat-input {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  #messageInput {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #sendButton {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0084ff;
+    color: white;
+    cursor: pointer;
+  }
