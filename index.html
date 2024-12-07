@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Chat Box</title>
+</head>
+
+<body>
+  <div class="chat-container">
+    <div class="character-info">
+      <img src="img/boss_0.png" alt="动漫角色（鸣人示例）" class="character-img">
+      <div class="character-score">
+        <p>情绪值: <span id="moodValue">100</span></p>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+    </div>
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="输入消息...">
+      <button id="sendButton">发送</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
